@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Loyalty.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="LoyaltyStoreContainer">
+    <EntitySet Name="Users" EntityType="Loyalty.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customers" EntityType="Loyalty.Store.Customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="Loyalty.Store.Products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductLines" EntityType="Loyalty.Store.ProductLines" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserCustomer" Association="Loyalty.Store.UserCustomer">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="ProductProductLine" Association="Loyalty.Store.ProductProductLine">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductLine" EntitySet="ProductLines" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerProductLine" Association="Loyalty.Store.CustomerProductLine">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="ProductLine" EntitySet="ProductLines" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="MobileNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Role" Type="nvarchar(max)" Nullable="true" DefaultValue="Customer" />
+    <Property Name="Status" Type="bit" Nullable="true" DefaultValue="true" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberId" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TotalPoints" Type="float" Nullable="true" DefaultValue="0" />
+    <Property Name="RedeemedPoints" Type="float" Nullable="true" DefaultValue="0" />
+    <Property Name="AvailablePoints" Type="float" Nullable="true" DefaultValue="0" />
+    <Property Name="Balance" Type="float" Nullable="true" DefaultValue="0" />
+    <Property Name="User_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SellingPrice" Type="float" Nullable="true" DefaultValue="0" />
+    <Property Name="Quantity" Type="bigint" Nullable="true" DefaultValue="0" />
+    <Property Name="TotalSold" Type="bigint" Nullable="true" DefaultValue="0" />
+    <Property Name="CostPrice" Type="float" Nullable="true" DefaultValue="0" />
+    <Property Name="Status" Type="bit" Nullable="true" DefaultValue="true" />
+  </EntityType>
+  <EntityType Name="ProductLines">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Quantity" Type="bigint" Nullable="true" DefaultValue="0" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="TrackingNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ProductId" Type="bigint" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="true" DefaultValue="true" />
+    <Property Name="Progress" Type="nvarchar(max)" Nullable="true" DefaultValue="Processing" />
+  </EntityType>
+  <Association Name="UserCustomer">
+    <End Role="User" Type="Loyalty.Store.Users" Multiplicity="1" />
+    <End Role="Customer" Type="Loyalty.Store.Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductProductLine">
+    <End Role="Product" Type="Loyalty.Store.Products" Multiplicity="1" />
+    <End Role="ProductLine" Type="Loyalty.Store.ProductLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductLine">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerProductLine">
+    <End Role="Customer" Type="Loyalty.Store.Customers" Multiplicity="1" />
+    <End Role="ProductLine" Type="Loyalty.Store.ProductLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductLine">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

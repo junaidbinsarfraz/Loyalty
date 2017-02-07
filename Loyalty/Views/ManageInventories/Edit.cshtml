@@ -1,0 +1,43 @@
+﻿@model Loyalty.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="white-box">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            @using (Html.BeginForm("Edit", "ManageInventories", FormMethod.Post,
+                             new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="control-label">Name</label>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="control-label">Code</label>
+                    @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="control-label">Description</label>
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="control-label">Selling Price</label>
+                    @Html.EditorFor(model => model.SellingPrice, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.SellingPrice, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="control-label">Quantity</label>
+                    @Html.EditorFor(model => model.CostPrice, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.CostPrice, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Save</button>
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success waves-effect waves-light m-r-10" })
+            }
+        </div>
+    </div>
+</div>

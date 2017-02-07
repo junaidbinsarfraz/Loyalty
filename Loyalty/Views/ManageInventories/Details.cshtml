@@ -1,0 +1,67 @@
+﻿@model Loyalty.Product
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="white-box">
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div class="white-box">
+                <div class="user-btm-box">
+                    <!-- .row -->
+                    <div class="row text-center m-t-10">
+                        <div class="col-md-6 b-r">
+                            <strong>Name</strong>
+                            <p>@Model.Name</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Code</strong>
+                            <p>@Model.Code</p>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <hr>
+                    <!-- .row -->
+                    <div class="row text-center m-t-10">
+                        <div class="col-md-6 b-r">
+                            <strong>Selling Price</strong>
+                            <p>@Model.SellingPrice</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Total Sold</strong>
+                            <p>@Model.TotalSold</p>
+                        </div>
+                    </div>
+                    <!-- /.row --><hr>
+                    <!-- .row -->
+                    <div class="row text-center m-t-10">
+                        <div class="col-md-6 b-r">
+                            <strong>Cost Price</strong>
+                            <p>@Model.CostPrice</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Quantity</strong>
+                            <p>@Model.Quantity</p>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <hr>
+                    <!-- .row -->
+                    <div class="row text-center m-t-10">
+                        <div class="col-md-12">
+                            <strong>Description</strong>
+                            <p>
+                                @Model.Description
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Loyalty" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="LoyaltyContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="Loyalty.User" />
+    <EntitySet Name="Customers" EntityType="Loyalty.Customer" />
+    <EntitySet Name="Products" EntityType="Loyalty.Product" />
+    <EntitySet Name="ProductLines" EntityType="Loyalty.ProductLine" />
+    <AssociationSet Name="UserCustomer" Association="Loyalty.UserCustomer">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="ProductProductLine" Association="Loyalty.ProductProductLine">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductLine" EntitySet="ProductLines" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerProductLine" Association="Loyalty.CustomerProductLine">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="ProductLine" EntitySet="ProductLines" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="true" />
+    <Property Name="Username" Type="String" Nullable="true" />
+    <Property Name="Password" Type="String" Nullable="true" />
+    <Property Name="MobileNumber" Type="String" Nullable="true" />
+    <Property Name="Address" Type="String" Nullable="true" />
+    <Property Name="Role" Type="String" Nullable="true" DefaultValue="Customer" />
+    <Property Name="Status" Type="Boolean" Nullable="true" DefaultValue="true" />
+    <NavigationProperty Name="Customer" Relationship="Loyalty.UserCustomer" FromRole="User" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberId" Type="String" Nullable="true" />
+    <Property Name="TotalPoints" Type="Double" Nullable="true" DefaultValue="0.0" />
+    <Property Name="RedeemedPoints" Type="Double" Nullable="true" DefaultValue="0.0" />
+    <Property Name="AvailablePoints" Type="Double" Nullable="true" DefaultValue="0.0" />
+    <NavigationProperty Name="User" Relationship="Loyalty.UserCustomer" FromRole="Customer" ToRole="User" />
+    <NavigationProperty Name="ProductLines" Relationship="Loyalty.CustomerProductLine" FromRole="Customer" ToRole="ProductLine" />
+    <Property Name="Balance" Type="Double" Nullable="true" DefaultValue="0.0" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="true" />
+    <Property Name="Code" Type="String" Nullable="true" />
+    <Property Name="Description" Type="String" Nullable="true" />
+    <Property Name="SellingPrice" Type="Double" Nullable="true" DefaultValue="0.0" />
+    <Property Name="Quantity" Type="Int64" Nullable="true" DefaultValue="0" />
+    <Property Name="TotalSold" Type="Int64" Nullable="true" DefaultValue="0" />
+    <Property Name="CostPrice" Type="Double" Nullable="true" DefaultValue="0.0" />
+    <Property Name="Status" Type="Boolean" Nullable="true" DefaultValue="true" />
+    <NavigationProperty Name="ProductLines" Relationship="Loyalty.ProductProductLine" FromRole="Product" ToRole="ProductLine" />
+  </EntityType>
+  <EntityType Name="ProductLine">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quantity" Type="Int64" Nullable="true" DefaultValue="0" />
+    <Property Name="Date" Type="DateTime" Nullable="true" />
+    <Property Name="TrackingNumber" Type="String" Nullable="true" />
+    <NavigationProperty Name="Product" Relationship="Loyalty.ProductProductLine" FromRole="ProductLine" ToRole="Product" />
+    <Property Name="ProductId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Loyalty.CustomerProductLine" FromRole="ProductLine" ToRole="Customer" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="true" DefaultValue="true" />
+    <Property Name="Progress" Type="String" Nullable="true" DefaultValue="Processing" />
+  </EntityType>
+  <Association Name="UserCustomer">
+    <End Type="Loyalty.User" Role="User" Multiplicity="1" />
+    <End Type="Loyalty.Customer" Role="Customer" Multiplicity="0..1" />
+  </Association>
+  <Association Name="ProductProductLine">
+    <End Type="Loyalty.Product" Role="Product" Multiplicity="1" />
+    <End Type="Loyalty.ProductLine" Role="ProductLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductLine">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerProductLine">
+    <End Type="Loyalty.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="Loyalty.ProductLine" Role="ProductLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductLine">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
