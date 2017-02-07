@@ -56,7 +56,7 @@
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header">
                 <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.html"><b><!--This is dark logo icon--><img src="../plugins/images/eliteadmin-logo.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="../plugins/images/eliteadmin-logo-dark.png" alt="home" class="light-logo" /></b><span class="hidden-xs"><!--This is dark logo text--><img src="../plugins/images/eliteadmin-text.png" alt="home" class="dark-logo" /><!--This is light logo text--><img src="../plugins/images/eliteadmin-text-dark.png" alt="home" class="light-logo" /></span></a></div>
+                <div class="top-left-part"><a class="logo" href="index.html"><b><!--This is dark logo icon--><img src="~/plugins/images/eliteadmin-logo.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="~/plugins/images/eliteadmin-logo-dark.png" alt="home" class="light-logo" /></b><span class="hidden-xs"><!--This is dark logo text--><img src="~/plugins/images/eliteadmin-text.png" alt="home" class="dark-logo" /><!--This is light logo text--><img src="~/plugins/images/eliteadmin-text-dark.png" alt="home" class="light-logo" /></span></a></div>
                 <ul class="nav navbar-top-links navbar-left hidden-xs">
                     <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
                 </ul>
@@ -126,10 +126,10 @@
                     <li>
                         <a href="javascript:void(0);" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu">Inventory<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="crm-leads.html">All Inventories</a></li>
+                            <li> <a href="../ManageInventories/Index">All Inventories</a></li>
                             @if (HttpContext.Current.Session["Role"] == "Admin")
                             {
-                                <li> <a href="crm-add-leads.html">Add Inventory</a></li>
+                                <li> <a href="../ManageInventories/Create">Add Inventory</a></li>
                             }
                         </ul>
                     </li>
@@ -138,8 +138,8 @@
                         <li>
                             <a href="javascript:void(0);" class="waves-effect"><i class="icon-handbag fa-fw"></i> <span class="hide-menu">Sales<span class="fa arrow"></span></span></a>
                             <ul class="nav nav-second-level">
-                                <li> <a href="crm-vendors.html">All Sales</a></li>
-                                <li> <a href="crm-add-vendors.html">Add Sale</a></li>
+                                <li> <a href="../ManageSales/Index">All Sales</a></li>
+                                <li> <a href="../ManageSales/Index">Add Sale</a></li>
                             </ul>
                         </li>
                     }
@@ -150,8 +150,8 @@
                         <li>
                             <a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu">Customers<span class="fa arrow"></span></span></a>
                             <ul class="nav nav-second-level">
-                                <li> <a href="crm-customers.html">All Customers</a></li>
-                                <li> <a href="crm-add-customers.html">Add Customer</a></li>
+                                <li> <a href="../ManageCustomers/Index">All Customers</a></li>
+                                <li> <a href="../ManageCustomers/Create">Add Customer</a></li>
                             </ul>
                         </li>
                         if (HttpContext.Current.Session["Role"] == "Admin")
@@ -159,8 +159,8 @@
                             <li>
                                 <a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu">Sale Persons<span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li> <a href="crm-customers.html">All Sale Persons</a></li>
-                                    <li> <a href="crm-add-customers.html">Add Sale Person</a></li>
+                                    <li> <a href="../ManageSalePersons/Index">All Sale Persons</a></li>
+                                    <li> <a href="../ManageSalePersons/Create">Add Sale Person</a></li>
                                 </ul>
                             </li>
                         }

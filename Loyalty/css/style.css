@@ -5017,7 +5017,7 @@ ul.list-icons li i {
   margin-bottom: 10px;
 }
 .user-profile .user-pro-body .u-dropdown {
-  color: #54667a;
+  color: #a0aec4;
 }
 .user-profile .user-pro-body .dropdown-menu {
   right: 0px;
@@ -15777,4 +15777,17 @@ ul.pro-amenities li span i {
   .pro-agent .agent-name {
     padding: 2px 0 10px 15px;
   }
+}
+
+.no-sort::after {
+    display: none !important;
+}
+
+.no-sort {
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
+input[type = "radio"] {
+    margin-top: -90%;
 }
