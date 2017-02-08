@@ -127,6 +127,8 @@
     <Compile Include="Controllers\ManageInventoriesController.cs" />
     <Compile Include="Controllers\ManageSalePersonsController.cs" />
     <Compile Include="Controllers\ManageSalesController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\SalePersonController.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>Loyalty.tt</DependentUpon>
     </Compile>
@@ -3170,6 +3172,11 @@
     <Content Include="Views\ManageSales\Details.cshtml" />
     <Content Include="Views\ManageSales\Edit.cshtml" />
     <Content Include="Views\ManageSales\Index.cshtml" />
+    <Content Include="Views\SalePerson\Edit.cshtml" />
+    <Content Include="Views\SalePerson\Index.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

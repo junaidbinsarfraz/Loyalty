@@ -61,7 +61,10 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @if (HttpContext.Current.Session["Role"] == "Admin" || HttpContext.Current.Session["Role"] == "Admin")
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <span>|</span>
+    }
         @Html.ActionLink("Back to List", "Index")
     </p>
 </div>

@@ -121,7 +121,7 @@
                     }
                     @if (HttpContext.Current.Session["Role"] == "Customer")
                     {
-                        <li> <a href="../Customer/Index" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard </span></a></li>
+                        <li> <a href="../Customer/Dashboard" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard </span></a></li>
                     }
                     <li>
                         <a href="javascript:void(0);" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu">Inventory<span class="fa arrow"></span></span></a>
@@ -139,7 +139,7 @@
                             <a href="javascript:void(0);" class="waves-effect"><i class="icon-handbag fa-fw"></i> <span class="hide-menu">Sales<span class="fa arrow"></span></span></a>
                             <ul class="nav nav-second-level">
                                 <li> <a href="../ManageSales/Index">All Sales</a></li>
-                                <li> <a href="../ManageSales/Index">Add Sale</a></li>
+                                <li> <a href="../ManageSales/Create">Add Sale</a></li>
                             </ul>
                         </li>
                     }

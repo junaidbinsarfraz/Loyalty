@@ -5,10 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="white-box">
-    <div style="margin-bottom: 15px;">
-        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success waves-effect waves-light m-r-10" })
-    </div>
-
+    @if (HttpContext.Current.Session["Role"] == "Admin" || HttpContext.Current.Session["Role"] == "Sale Person") 
+    { 
+        <div style="margin-bottom: 15px;">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success waves-effect waves-light m-r-10" })
+        </div>
+    }
     <div class="table-responsive">
         <table id="myTable" class="table table-striped">
             <thead>
@@ -17,7 +19,10 @@
                     <th>Code</th>
                     <th>Selling Price</th>
                     <th>Quantity</th>
-                    <th>Cost price</th>
+                    @if (HttpContext.Current.Session["Role"] == "Admin")
+                    {
+                        <th>Cost price</th>
+                    }
                     <th>Total Sold</th>
                     <th class="no-sort">
                         Action
@@ -40,16 +45,28 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Quantity)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CostPrice)
-                        </td>
+                        @if (HttpContext.Current.Session["Role"] == "Admin")
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CostPrice)
+                            </td>
+                        }
                         <td>
                             @Html.DisplayFor(modelItem => item.TotalSold)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            @if (HttpContext.Current.Session["Role"] == "Admin")
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span> | </span>
+                            }
+                            
+                            @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+                            @if (HttpContext.Current.Session["Role"] == "Admin")
+                            {   
+                                <span> | </span>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            }
                         </td>
                     </tr>
                 }
@@ -61,10 +78,12 @@
 
 <script>
     $(document).ready(function () {
-    $('#myTable').DataTable({dom: 'Bfrtip',
-        buttons: [
-            'pdf', 'print'
-        ]});
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'pdf', 'print'
+            ]
+        });
     });
 
 </script>

@@ -18,6 +18,8 @@ namespace Loyalty
         public ProductLine()
         {
             this.Quantity = 0;
+            this.ProductId = 1;
+            this.CustomerId = 1;
             this.Status = true;
             this.Progress = "Processing";
         }

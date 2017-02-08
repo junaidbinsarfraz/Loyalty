@@ -49,6 +49,7 @@
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Category" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Code" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
     <Property Name="SellingPrice" Type="float" Nullable="true" DefaultValue="0" />
@@ -65,8 +66,8 @@
     <Property Name="Quantity" Type="bigint" Nullable="true" DefaultValue="0" />
     <Property Name="Date" Type="datetime" Nullable="true" />
     <Property Name="TrackingNumber" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="ProductId" Type="bigint" Nullable="false" />
-    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="bigint" Nullable="false" DefaultValue="1" />
+    <Property Name="CustomerId" Type="int" Nullable="false" DefaultValue="1" />
     <Property Name="Status" Type="bit" Nullable="true" DefaultValue="true" />
     <Property Name="Progress" Type="nvarchar(max)" Nullable="true" DefaultValue="Processing" />
   </EntityType>

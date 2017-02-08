@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/07/2017 12:41:28
+-- Date Created: 02/08/2017 11:24:54
 -- Generated from EDMX file: D:\Junaid\Github\Loyalty\Loyalty\Loyalty.edmx
 -- --------------------------------------------------
 
@@ -89,6 +89,7 @@ GO
 CREATE TABLE [dbo].[Products] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NULL,
+    [Category] nvarchar(max)  NULL,
     [Code] nvarchar(max)  NULL,
     [Description] nvarchar(max)  NULL,
     [SellingPrice] float  NULL,
