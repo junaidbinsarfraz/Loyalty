@@ -1,7 +1,7 @@
 ﻿@model Loyalty.User
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Redeem";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="white-box">
@@ -26,8 +26,8 @@
                     <!-- .row -->
                     <div class="row text-center m-t-10">
                         <div class="col-md-6 b-r">
-                            <strong>Member ID</strong>
-                            <p>@Model.Customer.MemberId</p>
+                            <strong>Redeemed Points</strong>
+                            <p>@Model.Customer.RedeemedPoints</p>
                         </div>
                         <div class="col-md-6">
                             <strong>Available Points</strong>
@@ -39,8 +39,8 @@
                     <!-- .row -->
                     <div class="row text-center m-t-10">
                         <div class="col-md-6 b-r">
-                            <strong>Redeemed Points</strong>
-                            <p>@Model.Customer.RedeemedPoints</p>
+                            <strong>Total Points</strong>
+                            <p>@Model.Customer.TotalPoints</p>
                         </div>
                         <div class="col-md-6">
                             <strong>Balance</strong>
@@ -50,22 +50,30 @@
                     <!-- /.row -->
                     <hr>
                     <!-- .row -->
-                    <div class="row text-center m-t-10">
-                        <div class="col-md-12">
-                            <strong>Address</strong>
-                            <p>
-                                @Model.Address
-                            </p>
+                    @using (Html.BeginForm("Redeem", "Customer", FormMethod.Post,
+                     new { enctype = "multipart/form-data", data_toggle = "validator" }))
+                    {
+                        <div class="row text-center m-t-10">
+                            <div class="col-md-12">
+
+
+                                <div class="form-group">
+                                    <label for="pointstoberedeemed" class="control-label"><strong>Points to be Redeemed</strong></label>
+                                    <input type="number" class="form-group" id="pointstoberedeemed" name="pointstoberedeemed" required="required" />
+                                </div>
+
+
+                            </div>
                         </div>
-                    </div>
-                    <hr>
+                        <div style="color:red">
+                            @Html.ValidationSummary()
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Redeem Now</button>
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-success waves-effect waves-light m-r-10" })
+                    }
                 </div>
             </div>
         </div>
-
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) | 
-        @Html.ActionLink("Redeem Points", "Redeem", new { id = Model.Id })
-    </p>
 </div>

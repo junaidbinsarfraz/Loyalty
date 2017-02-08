@@ -145,7 +145,9 @@ namespace Loyalty.Controllers
 
                             customer.Balance = customer.Balance.Value - totalPrice;
 
-                            customer.TotalPoints = customer.TotalPoints.Value + (int)totalPrice;
+                            customer.AvailablePoints = customer.AvailablePoints.Value + (int)totalPrice;
+
+                            customer.TotalPoints = customer.AvailablePoints.Value + customer.RedeemedPoints.Value;
 
                             db.SaveChanges();
 

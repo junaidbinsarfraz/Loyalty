@@ -94,5 +94,70 @@ namespace Loyalty.Controllers
             }
             return View(user);
         }
+
+        // GET: ManageCustomers/Redeem/5
+        public ActionResult Redeem(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            User user = (User)HttpContext.Session["LoggedInUser"];
+
+            if (user == null || user.Customer == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if (user.Id != id)
+            {
+                return HttpNotFound();
+            }
+
+            user = db.Users.Find(id);
+            if (user == null || user.Status == false)
+            {
+                return HttpNotFound();
+            }
+
+            return View(user);
+        }
+
+        // POST: ManageCustomers/Redeem/5
+        [HttpPost]
+        public ActionResult Redeem(User user, FormCollection data)
+        {
+            Int64 points = Convert.ToInt64(data["pointstoberedeemed"]);
+
+            //user = db.Users.Find(user.Id);
+
+            if (points < 20 || points % 20 != 0)
+            {
+                ModelState.AddModelError("", "Points should be multiplt of 20 and greater then 19");
+                return View(user);
+            }
+
+            user = db.Users.Where(u => u.Id == user.Id).Include(u => u.Customer).FirstOrDefault();
+
+            if(user.Customer.AvailablePoints < points)
+            {
+                ModelState.AddModelError("", "Available Points are less then the entered points");
+                return View(user);
+            }
+
+            int moneyToBeAdded = (int)(points / 20);
+
+            user.Customer.AvailablePoints = user.Customer.AvailablePoints.Value - (moneyToBeAdded * 20);
+
+            user.Customer.RedeemedPoints = user.Customer.RedeemedPoints.Value + (moneyToBeAdded * 20);
+
+            user.Customer.TotalPoints = user.Customer.RedeemedPoints.Value + user.Customer.AvailablePoints.Value;
+
+            user.Customer.Balance = user.Customer.Balance.Value + moneyToBeAdded;
+
+            db.SaveChanges();
+
+            return View(user);
+        }
     }
 }
