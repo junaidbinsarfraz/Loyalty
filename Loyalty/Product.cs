@@ -11,7 +11,9 @@ namespace Loyalty
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract]
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,12 +28,16 @@ namespace Loyalty
         }
     
         public long Id { get; set; }
+        [DataMember(Name = "Name")]
         public string Name { get; set; }
         public string Category { get; set; }
+        [DataMember(Name = "Code")]
         public string Code { get; set; }
         public string Description { get; set; }
         public Nullable<double> SellingPrice { get; set; }
+        [DataMember(Name = "Quantity")]
         public Nullable<long> Quantity { get; set; }
+        [DataMember(Name = "TotalSold")]
         public Nullable<long> TotalSold { get; set; }
         public Nullable<double> CostPrice { get; set; }
         public Nullable<bool> Status { get; set; }

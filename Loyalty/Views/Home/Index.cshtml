@@ -3,30 +3,131 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="white-box">
+            <h3 class="box-title">Top 5 Products Sold By Category</h3>
+            <canvas id="top-sold-products-category-comparison" height="200"></canvas>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="white-box">
+            <h3 class="box-title">Least 5 Products' Quantity In Hand</h3>
+            <canvas id="least-products-in-hand-comparison" height="200"></canvas>
+        </div>
+    </div>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-xs-12">
+        <div class="white-box">
+            <h3 class="box-title">Top Ten Products Sold By Product Name</h3>
+            <div class="table-responsive">
+                <table id="myTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Code</th>
+                            <th>In Hand</th>
+                            <th>Total Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+
+@section Scripts
+{
+    <!-- Chart JS -->
+    @*<script src="~/plugins/bower_components/Chart.js/chartjs.init.js"></script>*@
+    <script src="~/plugins/bower_components/Chart.js/Chart.min.js"></script>
+    <!-- jQuery peity -->
+    <script src="~/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+    <script>
+    // Send ajax call
+    $.ajax({
+        url: '@Url.Action("SumTotalSoldByCategory", "Home")',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+
+            var ctx3 = document.getElementById("top-sold-products-category-comparison").getContext("2d");
+            var data3 = data;
+
+            var myPieChart = new Chart(ctx3).Pie(data3, {
+                segmentShowStroke: true,
+                segmentStrokeColor: "#fff",
+                segmentStrokeWidth: 0.1,
+                animationSteps: 100,
+                tooltipCornerRadius: 2,
+                animationEasing: "easeOutBounce",
+                animateRotate: true,
+                animateScale: false,
+                legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
+                responsive: true
+            });
+
+        },
+        error: function () {
+            console.log("Error");
+        }
+    });
+
+    // Send ajax call
+    $.ajax({
+        url: '@Url.Action("LeastProductsInHand", "Home")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+
+                var ctx3 = document.getElementById("least-products-in-hand-comparison").getContext("2d");
+                var data3 = data;
+
+                var myPieChart = new Chart(ctx3).Pie(data3, {
+                    segmentShowStroke: true,
+                    segmentStrokeColor: "#fff",
+                    segmentStrokeWidth: 0.1,
+                    animationSteps: 100,
+                    tooltipCornerRadius: 2,
+                    animationEasing: "easeOutBounce",
+                    animateRotate: true,
+                    animateScale: false,
+                    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
+                    responsive: true
+                });
+
+            },
+            error: function () {
+                console.log("Error");
+            }
+        });
+
+        // Send ajax call
+        $.ajax({
+            url: '@Url.Action("TopTenProductsSold", "Home")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+
+                for (i = 0; i < data.products.length; i++) {
+                    var html = '';
+                    
+                    html += '<td>' + data.products[i].Name + '</td>';
+                    html += '<td>' + data.products[i].Code + '</td>';
+                    html += '<td>' + data.products[i].Quantity + '</td>';
+                    html += '<td>' + data.products[i].TotalSold + '</td>';
+                    $('#myTable tbody').append('<tr>' + html + '</tr>');
+                }
+
+            },
+            error: function () {
+                console.log("Error");
+            }
+        });
+
+    </script>
+}

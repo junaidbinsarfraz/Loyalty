@@ -151,6 +151,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Loyalty.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PieChart.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>Loyalty.tt</DependentUpon>
@@ -3133,6 +3134,7 @@
       <LastGenOutput>Loyalty.cs</LastGenOutput>
       <DependentUpon>Loyalty.edmx</DependentUpon>
     </Content>
+    <Content Include="pdfs\term condition membership sofearose.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
