@@ -6,12 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Loyalty.LoyaltyTest;
 
 namespace Loyalty.Controllers
 {
     public class CustomerController : Controller
     {
-        private LoyaltyContainer db = new LoyaltyContainer();
+        private LoyaltyTest.LoyaltyTest db = new LoyaltyTest.LoyaltyTest();
 
         // GET: SalePerson
         public ActionResult Index()

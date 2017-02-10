@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Loyalty.LoyaltyTest;
 
 namespace Loyalty.Controllers
 {
@@ -41,7 +42,7 @@ namespace Loyalty.Controllers
         {
             if (ModelState.IsValid)
             {
-                LoyaltyContainer dataContext = new LoyaltyContainer();
+                LoyaltyTest.LoyaltyTest dataContext = new LoyaltyTest.LoyaltyTest();
                 // Check credentials
                 User user = dataContext.Users.FirstOrDefault(u => u.Username == loginModel.Username && u.Password == loginModel.Password && u.Status == true);
 
@@ -90,7 +91,7 @@ namespace Loyalty.Controllers
         [HttpGet]
         public ActionResult SumTotalSoldByCategory()
         {
-            LoyaltyContainer dataContext = new LoyaltyContainer();
+            LoyaltyTest.LoyaltyTest dataContext = new LoyaltyTest.LoyaltyTest();
 
             List<PieChartModel> totalCategorySold = dataContext.Database.SqlQuery<PieChartModel>("select top 5 sum(p.TotalSold) Value, p.Category Label from [Loyalty].[dbo].Products p group by p.Category order by sum(p.TotalSold) desc").ToList();
 
@@ -130,7 +131,7 @@ namespace Loyalty.Controllers
         [HttpGet]
         public ActionResult LeastProductsInHand()
         {
-            LoyaltyContainer dataContext = new LoyaltyContainer();
+            LoyaltyTest.LoyaltyTest dataContext = new LoyaltyTest.LoyaltyTest();
 
             List<PieChartModel> leastProductsInHand = dataContext.Database.SqlQuery<PieChartModel>("select top 5 sum(p.Quantity) Value, p.Name Label from [Loyalty].[dbo].Products p where p.Quantity > 0 group by p.Name order by sum(p.Quantity) asc").ToList();
 
@@ -170,7 +171,7 @@ namespace Loyalty.Controllers
         [HttpGet]
         public ActionResult TopTenProductsSold()
         {
-            LoyaltyContainer dataContext = new LoyaltyContainer();
+            LoyaltyTest.LoyaltyTest dataContext = new LoyaltyTest.LoyaltyTest();
 
             List<Product> products = dataContext.Database.SqlQuery<Product>("select top 10 p.* from [Loyalty].[dbo].Products p order by p.TotalSold desc").ToList();
 

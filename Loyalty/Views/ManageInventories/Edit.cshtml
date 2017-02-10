@@ -1,4 +1,4 @@
-﻿@model Loyalty.Product
+﻿@model Loyalty.LoyaltyTest.Product
 
 @{
     ViewBag.Title = "Edit";
@@ -50,8 +50,8 @@
                 }
                 <div class="form-group">
                     <label for="exampleInputPassword1" class="control-label">Quantity</label>
-                    @Html.EditorFor(model => model.CostPrice, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
-                    @Html.ValidationMessageFor(model => model.CostPrice, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
                 </div>
                 <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Save</button>
                 @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success waves-effect waves-light m-r-10" })

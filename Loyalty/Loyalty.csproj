@@ -130,39 +130,22 @@
     <Compile Include="Controllers\ManageSalesController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\SalePersonController.cs" />
-    <Compile Include="Customer.cs">
-      <DependentUpon>Loyalty.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Loyalty.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Loyalty.Context.tt</DependentUpon>
+    <Compile Include="LoyaltyTest\Customer.cs" />
+    <Compile Include="LoyaltyTest\LoyaltyTest.cs" />
+    <Compile Include="LoyaltyTest\Product.cs" />
+    <Compile Include="LoyaltyTest\ProductLine.cs" />
+    <Compile Include="LoyaltyTest\User.cs" />
+    <Compile Include="Migrations\201702100648415_LoyaltyTest.cs" />
+    <Compile Include="Migrations\201702100648415_LoyaltyTest.Designer.cs">
+      <DependentUpon>201702100648415_LoyaltyTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Loyalty.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Loyalty.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Loyalty.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Loyalty.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\PieChart.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Product.cs">
-      <DependentUpon>Loyalty.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProductLine.cs">
-      <DependentUpon>Loyalty.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs">
-      <DependentUpon>Loyalty.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrap\dist\css\bootstrap-theme.css" />
@@ -3117,23 +3100,6 @@
     <Content Include="plugins\bower_components\typeahead.js-master\typeahead.js.jquery.json" />
     <Content Include="plugins\images\assets\photothumb.db" />
     <Content Include="plugins\images\large\.DS_Store" />
-    <EntityDeploy Include="Loyalty.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Loyalty.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Loyalty.edmx.diagram">
-      <DependentUpon>Loyalty.edmx</DependentUpon>
-    </Content>
-    <Content Include="Loyalty.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Loyalty.Context.cs</LastGenOutput>
-      <DependentUpon>Loyalty.edmx</DependentUpon>
-    </Content>
-    <Content Include="Loyalty.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Loyalty.cs</LastGenOutput>
-      <DependentUpon>Loyalty.edmx</DependentUpon>
-    </Content>
     <Content Include="pdfs\term condition membership sofearose.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -3199,6 +3165,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702100648415_LoyaltyTest.resx">
+      <DependentUpon>201702100648415_LoyaltyTest.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

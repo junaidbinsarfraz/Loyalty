@@ -8,12 +8,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Loyalty.LoyaltyTest;
 
 namespace Loyalty.Controllers
 {
     public class ManageSalesController : Controller
     {
-        LoyaltyContainer db = new LoyaltyContainer();
+        LoyaltyTest.LoyaltyTest db = new LoyaltyTest.LoyaltyTest();
 
         // GET: ManageSales
         public ActionResult Index()

@@ -63,7 +63,7 @@
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <!-- .Megamenu -->
                     <li class="mega-dropdown">
-                        <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Html.Raw(((Loyalty.User)HttpContext.Current.Session["LoggedInUser"]).Name) <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Html.Raw(((Loyalty.LoyaltyTest.User)HttpContext.Current.Session["LoggedInUser"]).Name) <span class="caret"></span></a>
                         <ul class="dropdown-menu animated flipInY">
                             @if (HttpContext.Current.Session["Role"] == "Sale Person")
                             {
@@ -95,7 +95,7 @@
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
                 <div class="user-profile">
                     <div class="dropdown user-pro-body">
-                        <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Html.Raw(((Loyalty.User)HttpContext.Current.Session["LoggedInUser"]).Name) <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Html.Raw(((Loyalty.LoyaltyTest.User)HttpContext.Current.Session["LoggedInUser"]).Name) <span class="caret"></span></a>
                         <ul class="dropdown-menu animated flipInY">
                             @if (HttpContext.Current.Session["Role"] == "Sale Person")
                             {
