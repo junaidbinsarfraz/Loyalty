@@ -31,11 +31,16 @@
                     @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputPassword1" class="control-label">Size</label>
+                    @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
                     <label for="exampleInputPassword1" class="control-label">Selling Price</label>
                     @Html.EditorFor(model => model.SellingPrice, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.SellingPrice, "", new { @class = "text-danger" })
                 </div>
-                @if (HttpContext.Current.Session["Role"] == "Admin")
+                if (HttpContext.Current.Session["Role"] == "Admin")
                 {   
                     <div class="form-group">
                         <label for="exampleInputPassword1" class="control-label">Cost Price</label>

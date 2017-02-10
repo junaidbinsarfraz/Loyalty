@@ -17,7 +17,7 @@ namespace Loyalty.Controllers
         public ActionResult Index()
         {
             var users = db.Users.Include(u => u.Customer);
-            return View(users.ToList().Where(u => u.Customer != null));
+            return View(users.ToList().Where(u => u.Customer != null).Where(u => u.Status == true));
         }
 
         // GET: ManageCustomers/Details/5
@@ -49,9 +49,34 @@ namespace Loyalty.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                User oldUser = db.Users.Where(u => u.Status == true).Where(u => u.Username == user.Username).FirstOrDefault();
+
+                if (oldUser != null)
+                {
+                    ModelState.AddModelError("", "User already exists");
+                    return View(user);
+                }
+
                 // add role as doctor
                 user.Role = "Customer";
-                user.Customer.MemberId = Guid.NewGuid().ToString();
+
+                // Generate MemberId
+                Int64 numberOfCustmers = db.Customers.ToList().LongCount();
+
+                if (numberOfCustmers == 0)
+                {
+                    user.Customer.MemberId = "170001";
+                }
+                else
+                {
+                    Customer lastCustomer = db.Customers.ToList().LastOrDefault();
+                    Int64 memberId = Int64.Parse(lastCustomer.MemberId);
+
+                    memberId++;
+
+                    user.Customer.MemberId = memberId + "";
+                }
 
                 db.Users.Add(user);
 

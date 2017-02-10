@@ -40,6 +40,7 @@
           <ScalarProperty Name="TotalSold" ColumnName="TotalSold" />
           <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

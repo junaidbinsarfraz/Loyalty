@@ -91,6 +91,7 @@ namespace Loyalty.Controllers
                 oldProduct.Quantity = product.Quantity;
                 oldProduct.TotalSold = product.TotalSold;
                 oldProduct.CostPrice = product.CostPrice;
+                oldProduct.Size = product.Size;
 
                 db.SaveChanges();
 

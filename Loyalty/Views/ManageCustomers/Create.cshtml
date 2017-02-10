@@ -39,6 +39,9 @@
                     @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                 </div>
+                <div style="color:red">
+                    @Html.ValidationSummary()
+                </div>
                 <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Create</button>
                 @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success waves-effect waves-light m-r-10" })
             }

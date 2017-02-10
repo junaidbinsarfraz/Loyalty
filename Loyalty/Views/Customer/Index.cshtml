@@ -6,9 +6,9 @@
 }
 <div class="white-box">
     <div class="row">
-        <div class="col-md-4 col-xs-12">
+        <div class="col-xs-12">
             <div class="white-box">
-                <div class="user-bg"> <img alt="user" src="~/plugins/images/big/img3.jpg" width="100%"> </div>
+                <h2 class=""><b>Profile</b></h2>
                 <div class="user-btm-box">
                     <!-- .row -->
                     <div class="row text-center m-t-10">
@@ -64,8 +64,8 @@
         </div>
 
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) | 
+    <p class="text-center">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) &nbsp;&nbsp;|&nbsp;&nbsp;
         @Html.ActionLink("Redeem Points", "Redeem", new { id = Model.Id })
     </p>
 </div>

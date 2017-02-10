@@ -60,6 +60,7 @@
     <Property Name="CostPrice" Type="Double" Nullable="true" DefaultValue="0.0" />
     <Property Name="Status" Type="Boolean" Nullable="true" DefaultValue="true" />
     <NavigationProperty Name="ProductLines" Relationship="Loyalty.ProductProductLine" FromRole="Product" ToRole="ProductLine" />
+    <Property Name="Size" Type="String" Nullable="true" />
   </EntityType>
   <EntityType Name="ProductLine">
     <Key>

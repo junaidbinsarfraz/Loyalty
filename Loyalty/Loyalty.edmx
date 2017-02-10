@@ -62,6 +62,7 @@
     <Property Name="TotalSold" Type="bigint" Nullable="true" DefaultValue="0" />
     <Property Name="CostPrice" Type="float" Nullable="true" DefaultValue="0" />
     <Property Name="Status" Type="bit" Nullable="true" DefaultValue="true" />
+    <Property Name="Size" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="ProductLines">
     <Key>
@@ -176,6 +177,7 @@
           <Property Name="CostPrice" Type="Double" Nullable="true" DefaultValue="0.0" />
           <Property Name="Status" Type="Boolean" Nullable="true" DefaultValue="true" />
           <NavigationProperty Name="ProductLines" Relationship="Loyalty.ProductProductLine" FromRole="Product" ToRole="ProductLine" />
+          <Property Name="Size" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="ProductLine">
           <Key>
@@ -265,6 +267,7 @@
           <ScalarProperty Name="TotalSold" ColumnName="TotalSold" />
           <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

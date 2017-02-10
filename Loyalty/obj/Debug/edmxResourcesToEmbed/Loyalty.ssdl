@@ -57,6 +57,7 @@
     <Property Name="TotalSold" Type="bigint" Nullable="true" DefaultValue="0" />
     <Property Name="CostPrice" Type="float" Nullable="true" DefaultValue="0" />
     <Property Name="Status" Type="bit" Nullable="true" DefaultValue="true" />
+    <Property Name="Size" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="ProductLines">
     <Key>

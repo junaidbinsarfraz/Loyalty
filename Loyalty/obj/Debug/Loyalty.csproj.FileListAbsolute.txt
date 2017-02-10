@@ -55,6 +55,5 @@ D:\Junaid\Github\Loyalty\Loyalty\bin\System.Web.WebPages.Deployment.xml
 D:\Junaid\Github\Loyalty\Loyalty\bin\System.Web.WebPages.Razor.xml
 D:\Junaid\Github\Loyalty\Loyalty\bin\Antlr3.Runtime.pdb
 D:\Junaid\Github\Loyalty\Loyalty\bin\Newtonsoft.Json.xml
-D:\Junaid\Github\Loyalty\Loyalty\obj\Debug\Loyalty.csprojResolveAssemblyReference.cache
 D:\Junaid\Github\Loyalty\Loyalty\obj\Debug\Loyalty.dll
 D:\Junaid\Github\Loyalty\Loyalty\obj\Debug\Loyalty.pdb

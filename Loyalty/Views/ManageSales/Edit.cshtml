@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1" class="control-label">Tracking Number</label>
-                    @Html.EditorFor(model => model.TrackingNumber, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.EditorFor(model => model.TrackingNumber, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.TrackingNumber, "", new { @class = "text-danger" })
                 </div>
                 <div style="color:red">

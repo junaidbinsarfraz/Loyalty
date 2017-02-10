@@ -129,7 +129,7 @@ namespace Loyalty.Controllers
         {
             Int64 points = Convert.ToInt64(data["pointstoberedeemed"]);
 
-            //user = db.Users.Find(user.Id);
+            user = db.Users.Find(user.Id);
 
             if (points < 20 || points % 20 != 0)
             {

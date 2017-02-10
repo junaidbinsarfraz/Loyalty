@@ -49,6 +49,14 @@ namespace Loyalty.Controllers
         {
             if (ModelState.IsValid)
             {
+                User oldUser = db.Users.Where(u => u.Status == true).Where(u => u.Username == user.Username).FirstOrDefault();
+
+                if (oldUser != null)
+                {
+                    ModelState.AddModelError("", "User already exists");
+                    return View(user);
+                }
+
                 // add role as doctor
                 user.Role = "Sale Person";
 

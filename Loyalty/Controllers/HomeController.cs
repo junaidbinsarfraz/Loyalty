@@ -43,7 +43,7 @@ namespace Loyalty.Controllers
             {
                 LoyaltyContainer dataContext = new LoyaltyContainer();
                 // Check credentials
-                User user = dataContext.Users.FirstOrDefault(u => u.Username == loginModel.Username && u.Password == loginModel.Password);
+                User user = dataContext.Users.FirstOrDefault(u => u.Username == loginModel.Username && u.Password == loginModel.Password && u.Status == true);
 
                 if (user != null)
                 {
